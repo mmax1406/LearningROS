@@ -1,0 +1,51 @@
+controller_manager:
+  ros__parameters:
+    update_rate: 100  # Controller manager update rate (Hz)
+    use_sim_time: true # Critical for simulation
+
+    # ----------------------------------------------------
+    # 1. Controller Definition (What controllers are available)
+    # ----------------------------------------------------
+    diff_cont:
+      type: diff_drive_controller/DiffDriveController
+    
+    joint_broad:
+      type: joint_state_broadcaster/JointStateBroadcaster
+
+
+# =========================================================
+# Differential Drive Controller Parameters (diff_cont)
+# =========================================================
+diff_cont:
+  ros__parameters:
+    publish_rate: 30.0  # Odom publishing rate (Hz)
+    base_frame_id: base_link
+    odom_frame_id: odom # Standard Odom frame ID
+
+    # Wheel configuration
+    left_wheel_names: ['left_wheel_joint']
+    right_wheel_names: ['right_wheel_joint']
+    wheel_separation: 0.2
+    wheel_radius: 0.1 
+
+    # Topics
+    # By default, it subscribes to 'cmd_vel' and publishes 'odom'
+    # odometry_topic: 'odom'
+    # command_topic: 'cmd_vel'
+    
+    # Set to true if you are using geometry_msgs/TwistStamped
+    use_stamped_vel: false
+    
+    # Enable publishing of the transform between base_frame_id and odom_frame_id
+    publish_wheel_data: true
+    publish_joints_from_broadcaster: true
+
+# =========================================================
+# Joint State Broadcaster Parameters (joint_broad)
+# =========================================================
+joint_broad:
+  ros__parameters:
+    # No specific parameters typically needed beyond the defaults for GZ Sim
+    # However, you can list which joints to publish if you want to limit it
+    # extra_joints: ["left_wheel_joint", "right_wheel_joint"]
+    use_sim_time: true

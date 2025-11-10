@@ -13,8 +13,7 @@ def generate_launch_description():
 
 
     # !!! MAKE SURE YOU SET THE PACKAGE NAME CORRECTLY !!!
-    package_name='balance_bot' #<--- CHANGE ME
-
+    package_name='balance_bot'
     # Locate the world file within the package share directory
     world_file = os.path.join(
         get_package_share_directory(package_name), 
@@ -47,9 +46,38 @@ def generate_launch_description():
                                    '-allow_renaming', 'true'], 
                         output='screen')
 
+    diff_drive_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['diff_cont'],
+        output='screen'
+    )
+
+    joint_state_broadcaster_spawner = Node(
+        package='controller_manager',
+        executable='spawner',
+        arguments=['joint_broad'],
+        output='screen'
+    )
+
+    bridge_params = os.path.join(get_package_share_directory(package_name),'config','gz_bridge.yaml')
+    ros_gz_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}',
+        ]
+    )
+
+
     # Launch them all!
     return LaunchDescription([
         rsp,
         gazebo,
         create,
+        joint_state_broadcaster_spawner,
+        diff_drive_spawner,
+        ros_gz_bridge,
     ])
