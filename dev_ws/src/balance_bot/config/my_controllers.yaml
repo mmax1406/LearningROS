@@ -34,7 +34,7 @@ diff_cont:
     # command_topic: 'cmd_vel'
     
     # Set to true if you are using geometry_msgs/TwistStamped
-    use_stamped_vel: false
+    use_stamped_vel: true
     
     # Enable publishing of the transform between base_frame_id and odom_frame_id
     publish_wheel_data: true
