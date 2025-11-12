@@ -80,6 +80,8 @@
     </xacro:inertial_cylinder>
 </link>
 <gazebo refrence="right_wheel">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
     <material>Gazebo/blue</material>
 </gazebo>
 
@@ -114,6 +116,8 @@
     </xacro:inertial_cylinder>
 </link>
 <gazebo refrence="left_wheel">
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
     <material>Gazebo/blue</material>
 </gazebo>
 

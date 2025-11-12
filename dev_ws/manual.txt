@@ -1,0 +1,9 @@
+
+ros2 control list_hardware_interface
+
+ros2 topic list
+ros2 topic info /diff_cont/cmd_vel - get the message type
+
+ros2 topic pub /diff_cont/cmd_vel geometry_msgs/msg/TwistStamped "{twist: {linear: {x: -20}, angular: {z: 0.0}}}" -r 10
+
+**The problem was the twisted message, the robot 

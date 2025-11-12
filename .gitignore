@@ -2,4 +2,9 @@
 dev_ws/build/**
 dev_ws/install/**
 dev_ws/log/**
+
+simpleArm/build/**
+simpleArm/install/**
+simpleArm/log/**
+
 rlCode/RL_env/**
